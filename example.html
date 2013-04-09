@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="css/edgewise.css" />
+		<style type="text/css">
+			body { font-family: Verdana, sans-serif; font-size: 0.75em; }
+		</style>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+		<script src="js/jquery-edgewise.js"></script>
+	</head>
+	<body>
+
+		<h1>Examples</h1>
+		<p>View source for more info</p>
+
+		<h2>Edgewise analog panel meter</h2>
+		<p>Options:</p>
+		<table border="1">
+			<tr>
+				<th>Needle position (0-100):</th>
+				<td><input type="text" name="edgewise-value" size="10" maxlength="3" value="33" /></td>
+			</tr>
+			<tr>
+				<th>Label:</th>
+				<td><input type="text" name="edgewise-label" size="20" maxlength="20" value="DC Amperes" /></td>
+			</tr>
+			<tr>
+				<th>Scale start label:</th>
+				<td><input type="text" name="edgewise-scale-min" size="10" maxlength="10" value="0" /></td>
+			</tr>
+			<tr>
+				<th>Scale end label:</th>
+				<td><input type="text" name="edgewise-scale-max" size="10" maxlength="10" value="10" /></td>
+			</tr>
+			<tr>
+				<th>Transition length (ms):</th>
+				<td><input type="text" name="edgewise-duration" size="10" maxlength="5" value="500" /></td>
+			</tr>
+			<tr>
+				<th>Transition easing:</th>
+				<td><select name="edgewise-easing"><option /></select> <a href="http://jqueryui.com/resources/demos/effect/easing.html" target="_blank">demo</a></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<button name="edgewise-apply">Apply options</button>
+				</td>
+			</tr>
+		</table>
+		<p><div class="edgewise"></div></p>
+		<script type="text/javascript">
+			$(function(){
+				// fill the easing listbox with the available options and set easeOutCubic by default
+				$.each($.easing, function(k){
+					$('select[name="edgewise-easing"]').append($('<option />').attr('value', k).text(k));
+				});
+				$('select[name="edgewise-easing"]').val('easeOutCubic');
+				// attach the apply button handler and execute it immediately
+				$('button[name="edgewise-apply"]').on('click', function(){
+					$('.edgewise').edgewise({
+						label:$('input[name="edgewise-label"]').val(),
+						min:$('input[name="edgewise-min"]').val(),
+						max:$('input[name="edgewise-max"]').val(),
+						duration:$('input[name="edgewise-duration"]').val(),
+						easing:$('select[name="edgewise-easing"]').val()
+					}).edgewise('value', $('input[name="edgewise-value"]').val());
+				}).triggerHandler('click');
+			});
+		</script>
+
+	</body>
+</html>
