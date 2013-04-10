@@ -1,4 +1,4 @@
-.edgewise { position: relative; width: 240px; height: 50px; background-image: url("edgewise/scale.png"); }
+.edgewise { position: relative; width: 240px; height: 50px; background-image: url("edgewise/scale.png"); overflow: hidden; }
 .edgewise-needle, .edgewise-frame { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; }
 .edgewise-needle { background-image: url("edgewise/needle.png"); background-repeat: no-repeat; }
 .edgewise-frame { background-image: url("edgewise/frame.png"); }

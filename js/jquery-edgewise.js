@@ -26,10 +26,16 @@
 		_refresh : function(){
 			var easing = this.options.easing;
 			if ($.easing[easing]==undefined) easing = null;
-			this.element.find('.edgewise-needle').animate({'background-position-x':this._getNeedleOffset()+'px'}, parseInt(this.options.duration), easing);
+			this.element.find('.edgewise-needle').animate({'left':this._getNeedleOffset()+'px'}, parseInt(this.options.duration), easing);
 		},
-		value : function(value){
-			this.options.value = value;
+		value : function(value, min, max){
+			value = parseFloat(value);
+			if (min!=undefined && max!=undefined) {
+				value = 100 * (value - min) / (max - min);
+			}
+			if (value<-5) value = -5;
+			if (value>105) value = 105;
+			this.options.value = Math.round(value);
 			this._refresh();
 		}
 	});
